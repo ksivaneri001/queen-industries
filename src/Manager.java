@@ -3,18 +3,18 @@ import java.util.List;
 
 public class Manager extends Employee {
 
-    protected int bonus;
+    protected double bonus;
     protected List<Employee> reports;
     private int tier;
 
-    public Manager(int salary, int bonus, String name, String department, String title, ArrayList reports, int tier) {
+    public Manager(double salary, double bonus, String name, String department, String title, ArrayList reports, int tier) {
         super(salary, name, department, title);
         this.bonus = bonus;
         this.reports = reports;
         this.tier = tier;
     }
 
-    public int getBonus() {
+    public double getBonus() {
         return bonus;
     }
 

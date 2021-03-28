@@ -1,12 +1,12 @@
 public class Employee implements Comparable {
 
-    protected int salary;
+    protected double salary;
     protected String name;
     protected String department;
     protected String title;
     private int tier;
 
-    public Employee(int salary, String name, String department, String title) {
+    public Employee(double salary, String name, String department, String title) {
         this.salary = salary;
         this.name = name;
         this.department = department;
@@ -18,7 +18,7 @@ public class Employee implements Comparable {
         return tier;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 

@@ -237,6 +237,26 @@ public class Company {
         return null;
     }
 
+    private void printEmployeeDetails(Employee employee) {
+        System.out.println("Employee     : " + employee.getName());
+        System.out.println("Department   : " + employee.getDepartment());
+        System.out.println("Title        : " + employee.getTitle());
+        switch (employee.getTier()) {
+            case 1:
+                System.out.println("Compensation : " + employee.getSalary());
+                break;
+            case 2:
+                Manager manager = (Manager) employee;
+                System.out.println("Compensation : " + manager.getSalary() + manager.getBonus());
+                break;
+            case 3:
+                Director director = (Director) employee;
+                System.out.println("Compensation : " + director.getSalary() + director.getBonus() + director.getStockShares());
+            default:
+        }
+
+    }
+
     private void printOrganizationChart() {
         if (staff.size() > 0) {
             for (Employee director : staff) {
@@ -252,6 +272,7 @@ public class Company {
                     }
                 }
             }
+            System.out.println();
         }
     }
 }
