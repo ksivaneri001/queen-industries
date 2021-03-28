@@ -1,9 +1,10 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Manager extends Employee {
 
     protected int bonus;
-    protected ArrayList reports;
+    protected List<Employee> reports;
     private int tier;
 
     public Manager(int salary, int bonus, String name, String department, String title, ArrayList reports, int tier) {
@@ -17,7 +18,7 @@ public class Manager extends Employee {
         return bonus;
     }
 
-    public ArrayList getReports() {
+    public List<Employee> getReports() {
         return reports;
     }
 

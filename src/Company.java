@@ -222,4 +222,36 @@ public class Company {
         company.adjustSalaries();
         company.testInvalidOperations();
     }
+
+    private Director getDirector(String department) {
+        for (Employee employee : staff) {
+            if (employee.getDepartment().equals(department)) return (Director) employee;
+        }
+        return null;
+    }
+
+    private Employee getEmployee(String name) {
+        for (Employee employee : staff) {
+            if (employee.getName().equals(name)) return employee;
+        }
+        return null;
+    }
+
+    private void printOrganizationChart() {
+        if (staff.size() > 0) {
+            for (Employee director : staff) {
+                if (director.getTier() == 3) {
+                    System.out.println(" - " + director.getName() + ", Director of " + director.getDepartment());
+                    for (Employee manager : ((Director) director).getReports()) {
+                        if (manager.getTier() == 2) {
+                            System.out.println("    - " + manager.getName() + ", " + manager.getTitle());
+                            for (Employee employee : ((Manager) manager).getReports()) {
+                                if (employee.getTier() == 1) System.out.println("       - " + manager.getName() + ", " + manager.getTitle());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
