@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Company {
+public class Company { // initial commit
 
     public static final int EMPLOYEE = 1;
     public static final int MANAGER = 2;
