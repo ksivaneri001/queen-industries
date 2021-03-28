@@ -254,19 +254,21 @@ public class Company {
                 System.out.println("Compensation : " + director.getSalary() + director.getBonus() + director.getStockShares());
             default:
         }
-
+        System.out.println();
     }
 
     private void printOrganizationChart() {
+        System.out.println();
         if (staff.size() > 0) {
+            System.out.println("Queen Industries Organization Chart");
             for (Employee director : staff) {
-                if (director.getTier() == 3) {
+                if (director.getTier() == Company.DIRECTOR) {
                     System.out.println(" - " + director.getName() + ", Director of " + director.getDepartment());
                     for (Employee manager : ((Director) director).getReports()) {
                         if (manager.getTier() == 2) {
                             System.out.println("    - " + manager.getName() + ", " + manager.getTitle());
                             for (Employee employee : ((Manager) manager).getReports()) {
-                                if (employee.getTier() == 1) System.out.println("       - " + manager.getName() + ", " + manager.getTitle());
+                                if (employee.getTier() == 1) System.out.println("       - " + employee.getName() + ", " + employee.getTitle());
                             }
                         }
                     }
