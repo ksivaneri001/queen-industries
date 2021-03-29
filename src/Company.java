@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Company {
@@ -258,17 +259,17 @@ public class Company {
     }
 
     private void printOrganizationChart() {
-        System.out.println();
         if (staff.size() > 0) {
+            System.out.println();
             System.out.println("Queen Industries Organization Chart");
             for (Employee director : staff) {
                 if (director.getTier() == Company.DIRECTOR) {
                     System.out.println(" - " + director.getName() + ", Director of " + director.getDepartment());
                     for (Employee manager : ((Director) director).getReports()) {
-                        if (manager.getTier() == 2) {
+                        if (manager.getTier() == Company.MANAGER) {
                             System.out.println("    - " + manager.getName() + ", " + manager.getTitle());
                             for (Employee employee : ((Manager) manager).getReports()) {
-                                if (employee.getTier() == 1) System.out.println("       - " + employee.getName() + ", " + employee.getTitle());
+                                if (employee.getTier() == Company.EMPLOYEE) System.out.println("       - " + employee.getName() + ", " + employee.getTitle());
                             }
                         }
                     }

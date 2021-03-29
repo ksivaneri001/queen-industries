@@ -37,6 +37,8 @@ public class Employee implements Comparable {
     @Override
     public int compareTo(Object o) {
         Employee employee = (Employee) o;
-        return this.getTier() - employee.getTier();
+        if (this.getTier() > employee.getTier()) return 1;
+        else if (this.getTier() < employee.getTier()) return -1;
+        return 0;
     }
 }

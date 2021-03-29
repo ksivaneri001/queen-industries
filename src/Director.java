@@ -17,12 +17,12 @@ public class Director extends Manager {
         this.tier = tier;
     }
 
+    public double getStockShares() {
+        return stockShares;
+    }
+
     @Override
     public int getTier() {
         return tier;
-    }
-
-    public double getStockShares() {
-        return stockShares;
     }
 }
