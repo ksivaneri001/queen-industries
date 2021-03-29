@@ -225,15 +225,20 @@ public class Company {
     }
 
     private Director getDirector(String department) {
-        for (Employee employee : staff) {
-            if (employee.getDepartment().equals(department)) return (Director) employee;
+        for (Employee director : staff) {
+            if (director.getDepartment().equals(department)) return (Director) director;
         }
         return null;
     }
 
     private Employee getEmployee(String name) {
-        for (Employee employee : staff) {
-            if (employee.getName().equals(name)) return employee;
+        for (Employee director : staff) {
+            for (Employee manager : ((Director) director).getReports()) {
+                if (manager.getName().equals(name)) return (Manager) manager;
+                for (Employee employee : ((Manager) manager).getReports()) {
+                    if (employee.getName().equals(name)) return employee;
+                }
+            }
         }
         return null;
     }

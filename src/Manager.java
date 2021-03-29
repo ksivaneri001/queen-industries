@@ -36,7 +36,7 @@ public class Manager extends Employee {
     }
 
     public void fire(Employee employee) throws Exception {
-        if (!this.getDepartment().equals(employee.getDepartment())) throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
+        if (employee == null) throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
         else if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
         else {
             this.reports.remove(employee);
