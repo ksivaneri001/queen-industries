@@ -253,11 +253,11 @@ public class Company {
                 break;
             case 2:
                 Manager manager = (Manager) employee;
-                System.out.println("Compensation : " + manager.getSalary() + manager.getBonus());
+                System.out.println("Compensation : " + (manager.getSalary() + manager.getBonus()));
                 break;
             case 3:
                 Director director = (Director) employee;
-                System.out.println("Compensation : " + director.getSalary() + director.getBonus() + director.getStockShares());
+                System.out.println("Compensation : " + (director.getSalary() + director.getBonus() + director.getStockShares()));
             default:
         }
         System.out.println();
