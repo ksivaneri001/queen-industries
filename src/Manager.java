@@ -55,7 +55,7 @@ public class Manager extends Employee {
             String reassignedLog = "";
             boolean reassigned = false;
             for (int i = 0; i < this.getReports().size(); i++) {
-                if (this.reports.get(i).getDepartment().equals(employee.getDepartment())) {
+                if (this.getReports().get(i).getDepartment().equals(employee.getDepartment())) {
                     for (Employee employee2 : managerless) {
                         reassigned = true;
                         this.reports.add(employee2);
@@ -69,6 +69,16 @@ public class Manager extends Employee {
 
     public void adjustSalary(int amount, Employee employee) throws Exception {
         if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot supervise an Employee of an equal or greater tier.");
+        boolean inList = false;
+        for (Employee employee1 : this.getReports()) {
+            if (employee1.equals(employee)) inList = true;
+            if (employee1.getTier() == Company.MANAGER) {
+                for (Employee employee2 : ((Manager) employee1).getReports()) {
+                    if (employee2.equals(employee)) inList = true;
+                }
+            }
+        }
+        if (!inList) throw new Exception("ERROR: cannot alter salary of an Employee who is not a report.");
         else employee.salary += amount;
     }
 }
