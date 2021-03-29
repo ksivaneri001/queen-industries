@@ -265,9 +265,10 @@ public class Company {
 
     private void printOrganizationChart() {
         if (staff.size() > 0) {
+            List<Employee> sortedStaff = sortStaffList();
             System.out.println();
             System.out.println("Queen Industries Organization Chart");
-            for (Employee director : staff) {
+            for (Employee director : sortedStaff) {
                 if (director.getTier() == Company.DIRECTOR) {
                     System.out.println(" - " + director.getName() + ", Director of " + director.getDepartment());
                     for (Employee manager : ((Director) director).getReports()) {
@@ -282,5 +283,18 @@ public class Company {
             }
             System.out.println();
         }
+    }
+
+    private List<Employee> sortStaffList() {
+        List<String> tempNames = new ArrayList<>();
+        for (Employee employee : staff) tempNames.add(employee.getName());
+        Collections.sort(tempNames);
+        List<Employee> output = new ArrayList<>();
+        for (String name : tempNames) {
+            for (Employee employee : staff) {
+                if (employee.getName().equals(name)) output.add(employee);
+            }
+        }
+        return output;
     }
 }
