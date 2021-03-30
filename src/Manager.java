@@ -28,7 +28,7 @@ public class Manager extends Employee {
     }
 
     public void hire(Employee employee) throws Exception {
-        if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
+        if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot hire an Employee of an equal or greater tier.");
         else {
             this.reports.add(employee);
             System.out.println("LOG: new Employee hired (" + employee.getName() + ", " + employee.getDepartment() + ", " + employee.getTitle() + ")");
@@ -36,8 +36,8 @@ public class Manager extends Employee {
     }
 
     public void fire(Employee employee) throws Exception {
-        if (employee == null) throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
-        else if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
+        if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
+        else if (employee == null) throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
         else {
             this.reports.remove(employee);
             System.out.println("LOG: existing Employee fired (" + employee.getName() + ", " + employee.getDepartment() + ", " + employee.getTitle() + ")");
@@ -46,8 +46,8 @@ public class Manager extends Employee {
 
     public void fire(Manager employee) throws Exception {
         List<Employee> managerless = employee.getReports();
-        if (!employee.getDepartment().equals(this.getDepartment())) throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
-        else if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
+        if (this.compareTo(employee) <= 0) throw new Exception("ERROR: cannot fire an Employee of an equal or greater tier.");
+        else if (!employee.getDepartment().equals(this.getDepartment())) throw new Exception("ERROR: cannot fire an Employee who is not a direct or indirect report.");
         else {
             this.reports.remove(employee);
             System.out.println("LOG: existing Employee fired (" + employee.getName() + ", " + employee.getDepartment() + ", " + employee.getTitle() + ")");
@@ -58,7 +58,8 @@ public class Manager extends Employee {
                 if (this.getReports().get(i).getDepartment().equals(employee.getDepartment())) {
                     for (Employee employee2 : managerless) {
                         reassigned = true;
-                        this.reports.add(employee2);
+                        Manager reassignedEmployee = new Manager(employee2.getSalary(), 0, employee2.getName(), employee2.getDepartment(), employee2.getTitle(), new ArrayList<>(), Company.MANAGER);
+                        this.reports.add(reassignedEmployee);
                         reassignedLog += employee2.getName() + ", " + employee2.getDepartment() + ", " + employee2.getTitle() + ", ";
                     }
                 }
